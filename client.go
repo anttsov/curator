@@ -18,7 +18,7 @@ type ZookeeperConnection interface {
 	// Close this connection
 	Close()
 
-	//Gets State of this connection.
+	// Gets State of this connection.
 	State() zk.State
 
 	// Create a node with the given path.
