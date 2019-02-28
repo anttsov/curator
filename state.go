@@ -132,7 +132,7 @@ func (h *handleHolder) internalClose() error {
 	if h.Helper() != nil {
 		if conn, err := h.getZookeeperConnection(); err != nil {
 			return err
-		} else if conn != nil {
+		} else if conn != nil && conn.State() != zk.StateDisconnected {
 			conn.Close()
 		}
 	}
