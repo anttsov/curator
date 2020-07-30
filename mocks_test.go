@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"reflect"
 	"sync"
-	"testing"
 	"time"
 
 	"github.com/go-zookeeper/zk"
@@ -121,6 +120,10 @@ type mockConn struct {
 
 	log        infof
 	operations []interface{}
+}
+
+func (c *mockConn) State() zk.State {
+	return zk.StateConnected
 }
 
 func (c *mockConn) AddAuth(scheme string, auth []byte) error {
@@ -821,7 +824,7 @@ func (c *mockContainer) WithNamespace(namespace string) *mockContainer {
 	return c
 }
 
-func (c *mockContainer) Test(t *testing.T, callback interface{}) {
+func (c *mockContainer) Test(t suite.TestingT, callback interface{}) {
 	var client CuratorFramework
 	var events chan zk.Event
 	var wg *sync.WaitGroup

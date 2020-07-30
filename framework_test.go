@@ -9,7 +9,7 @@ import (
 )
 
 func StartNewTestingClient(t *testing.T) CuratorFramework {
-	zkCluster, err := zk.StartTestCluster(1, nil, nil)
+	zkCluster, err := zk.StartTestCluster(1, nil, nil, nil)
 	assert.NoError(t, err)
 	var c = NewClient(fmt.Sprintf("127.0.0.1:%d", zkCluster.Servers[0].Port), nil)
 	c.ConnectionStateListenable().AddListener(NewConnectionStateListener(
