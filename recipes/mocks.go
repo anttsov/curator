@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/curator-go/curator"
+	"github.com/anttsov/curator-go"
 	"github.com/samuel/go-zookeeper/zk"
 	"github.com/stretchr/testify/mock"
 )

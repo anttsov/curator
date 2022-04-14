@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/curator-go/curator"
+	"github.com/anttsov/curator-go"
 	"github.com/tevino/abool"
 )
 
