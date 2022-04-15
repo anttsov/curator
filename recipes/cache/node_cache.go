@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/anttsov/curator-go"
-	"github.com/samuel/go-zookeeper/zk"
+	"github.com/go-zookeeper/zk"
 )
 
 type NodeCacheListener interface {

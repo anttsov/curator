@@ -8,7 +8,7 @@ import (
 	"sync/atomic"
 
 	"github.com/anttsov/curator-go"
-	"github.com/samuel/go-zookeeper/zk"
+	"github.com/go-zookeeper/zk"
 )
 
 // TreeNode represents a node in a tree of znodes.

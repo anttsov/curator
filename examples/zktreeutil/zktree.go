@@ -15,7 +15,7 @@ import (
 
 	"github.com/anttsov/curator-go"
 	"github.com/pmezard/go-difflib/difflib"
-	"github.com/samuel/go-zookeeper/zk"
+	"github.com/go-zookeeper/zk"
 )
 
 // The action type; any of create/delete/setvalue.
