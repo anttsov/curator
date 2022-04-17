@@ -254,7 +254,7 @@ func (s *ConnectionStateTestSuite) TestConnected() {
 		State: zk.StateHasSession,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.True(s.T(), s.state.Connected())
 }
@@ -280,7 +280,7 @@ func (s *ConnectionStateTestSuite) TestNewConnectionString() {
 		State: zk.StateHasSession,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.Equal(s.T(), instanceIndex+1, s.state.InstanceIndex())
 	assert.False(s.T(), s.state.Connected())
@@ -310,7 +310,7 @@ func (s *ConnectionStateTestSuite) TestExpiredSession() {
 		State: zk.StateHasSession,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.True(s.T(), s.state.Connected())
 
@@ -322,7 +322,7 @@ func (s *ConnectionStateTestSuite) TestExpiredSession() {
 		State: zk.StateExpired,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.Equal(s.T(), instanceIndex+1, s.state.InstanceIndex())
 	assert.False(s.T(), s.state.Connected())
@@ -350,7 +350,7 @@ func (s *ConnectionStateTestSuite) TestParentWatcher() {
 		State: zk.StateConnecting,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.Equal(s.T(), 1, len(s.sessionEvents))
 
@@ -361,7 +361,7 @@ func (s *ConnectionStateTestSuite) TestParentWatcher() {
 		State: zk.StateConnected,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.Equal(s.T(), s.state.AddParentWatcher(s.watcher), s.watcher)
 
@@ -370,7 +370,7 @@ func (s *ConnectionStateTestSuite) TestParentWatcher() {
 		State: zk.StateDisconnected,
 	}
 
-	time.Sleep(100 * time.Microsecond)
+	time.Sleep(1 * time.Millisecond)
 
 	assert.Equal(s.T(), 2, len(s.sessionEvents))
 	assert.Equal(s.T(), zk.StateConnecting, s.sessionEvents[0].State)
