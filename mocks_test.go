@@ -824,7 +824,7 @@ func (c *mockContainer) WithNamespace(namespace string) *mockContainer {
 	return c
 }
 
-func (c *mockContainer) Test(t suite.TestingT, callback interface{}) {
+func (c *mockContainer) Test(t mock.TestingT, callback interface{}) {
 	var client CuratorFramework
 	var events chan zk.Event
 	var wg *sync.WaitGroup

@@ -2,8 +2,8 @@ package curator
 
 import (
 	"runtime"
+	"sync"
 	"testing"
-	"time"
 
 	"github.com/go-zookeeper/zk"
 	"github.com/stretchr/testify/assert"
@@ -12,16 +12,21 @@ import (
 func TestWatchers(t *testing.T) {
 	var events [3][]*zk.Event
 
+	wg := sync.WaitGroup{}
+
 	w := NewWatchers(NewWatcher(func(event *zk.Event) {
 		events[0] = append(events[0], event)
+		wg.Done()
 	}))
 
 	w1 := w.Add(NewWatcher(func(event *zk.Event) {
 		events[1] = append(events[1], event)
+		wg.Done()
 	}))
 
 	w2 := w.Add(NewWatcher(func(event *zk.Event) {
 		events[2] = append(events[2], event)
+		wg.Done()
 	}))
 
 	assert.Equal(t, w1, w.watchers[1])
@@ -33,9 +38,9 @@ func TestWatchers(t *testing.T) {
 
 	evt := zk.Event{}
 
+	wg.Add(3)
 	c <- evt
-
-	time.Sleep(100 * time.Millisecond)
+	wg.Wait()
 
 	close(c)
 
@@ -55,7 +60,9 @@ func TestWatchers(t *testing.T) {
 
 	evt = zk.Event{}
 
+	wg.Add(1)
 	c <- evt
+	wg.Wait()
 
 	runtime.Gosched()
 
