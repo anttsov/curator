@@ -18,6 +18,10 @@ type mockZookeeperConnection struct {
 	operations []interface{}
 }
 
+func (c *mockZookeeperConnection) State() zk.State {
+	return zk.StateConnected
+}
+
 func (c *mockZookeeperConnection) AddAuth(scheme string, auth []byte) error {
 	args := c.Called(scheme, auth)
 	err := args.Error(0)
@@ -324,7 +328,8 @@ func newMockBuilder(t *testing.T) *mockBuilder {
 func (b *mockBuilder) Build() curator.CuratorFramework {
 	b.builder.ConnectString("connStr")
 
-	b.dialer.On("Dial", "connStr", curator.DEFAULT_SESSION_TIMEOUT, b.builder.CanBeReadOnly).Return(b.conn, b.events, nil).Once()
+	b.dialer.On("Dial", "connStr", curator.DEFAULT_SESSION_TIMEOUT, b.builder.CanBeReadOnly).Return(
+		curator.ZookeeperConnection(b.conn), b.events, nil).Once()
 
 	return b.builder.Build()
 }
