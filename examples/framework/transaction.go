@@ -3,7 +3,7 @@ package framework
 import (
 	"fmt"
 
-	"github.com/anttsov/curator-go"
+	"github.com/anttsov/curator"
 )
 
 func CreateTransaction(client curator.CuratorFramework) error {

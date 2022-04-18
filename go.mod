@@ -1,4 +1,4 @@
-module github.com/anttsov/curator-go
+module github.com/anttsov/curator
 
 go 1.17
 
