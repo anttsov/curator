@@ -7,8 +7,8 @@ require (
 	github.com/fanliao/go-promise v0.0.0-20141029170127-1890db352a72
 	github.com/go-zookeeper/zk v1.0.2
 	github.com/pmezard/go-difflib v1.0.0
-	github.com/smartystreets/goconvey v1.7.2
-	github.com/stretchr/testify v1.7.1
+	github.com/smartystreets/goconvey v1.6.4
+	github.com/stretchr/testify v1.7.0
 	github.com/tevino/abool v1.2.0
 )
 
